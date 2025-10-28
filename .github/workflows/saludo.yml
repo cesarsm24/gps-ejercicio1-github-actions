@@ -1,1 +1,28 @@
+name: Workflow de Saludo
 
+# EVENTO: Se dispara con cada push a main
+on:
+  push:
+    branches:
+      - main
+
+# JOBS: Define los trabajos
+jobs:
+  # JOB 1: Saludar al usuario
+  saludar-al-usuario:
+    # RUNNER: Ejecutar en Ubuntu
+    runs-on: ubuntu-latest
+    
+    # STEPS: Pasos del job
+    steps:
+      # STEP 1: Acción para descargar el código
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+      
+      # STEP 2: Comando para saludar
+      - name: Saludar al usuario
+        run: echo "¡Hola, ${{ github.actor }}! Gracias por hacer push."
+      
+      # STEP 3: Comando para listar archivos
+      - name: Listar archivos del repositorio
+        run: ls -la
